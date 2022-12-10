@@ -63,24 +63,28 @@ public class PlayerFunction {
 				}
 			}
 		}
-	//아직 득점왕이 여러명일때 이름 다같이 나오게하는건 못함..
+	
 	public void goldenB() {
 		System.out.println("============득점왕 확인============");
-		int max = 0;
-		String maxn = "";
+		int [] goals = new int[players.length];
+		String [] names = new String[players.length];
 		for(int i = 0; i < players.length; i++) {
-			if (players[i].getGoal() > max) {
-				//i번째 선수의 골 수가 max 보다 크면 
-				//max 에 i번째 선수의 값을 넣고
-				//maxn에는 i번째 선수의 이름을 넣는다.
-				max = players[i].getGoal();
-				maxn = players[i].getName();
-			} 
+			goals[i] = players[i].getGoal();
+			names[i] = players[i].getName();
 		}
-		    // 골 수가 제일 많은 선수 이름 출력
-		    System.out.println();
-			System.out.println("득점왕은 " + maxn + " ~~!!");
-			System.out.println();
+		int max = 0;
+		for(int i = 0; i < players.length; i++) {
+			if(goals[max] <= goals[i]) {
+				max = i;
+			}
 		}
+		for(int i = 0; i < players.length; i++) {
+			if(goals[max] == goals[i]) {
+				System.out.println("득점왕은");
+				System.out.println(names[i]);
+				System.out.println("~!!");
+			}
+		}
+	}
 	
 }
